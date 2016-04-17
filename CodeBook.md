@@ -1,10 +1,12 @@
 The Code Book
+
 Project of Getting and Cleaning Data
+
 Li He
 
 ### Introduction
 
-ìResult.txtî is a secondary, independent data set based on Davide Anguita et al.ís Human Activity 
+‚ÄúResult.txt‚Äù is a secondary, independent data set based on Davide Anguita et al.‚Äôs Human Activity 
 Recognition database built from the recordings of 30 subjects performing activities of daily living (ADL) 
 while carrying a waist-mounted smartphone with embedded inertial sensors. Details about the database 
 are available at the site:
@@ -12,13 +14,16 @@ http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartpho
 
 ### Information about the variables in "Result.txt".
 
-ìResult.txtî is the output file from running the ìrun_analysis.Rî. It contains the average values of mean 
+‚ÄúResult.txt‚Äù is the output file from running the ‚Äúrun_analysis.R‚Äù. It contains the average values of mean 
 or standard deviation variables for every activity and every subject.
 
 There are 68 variables.
-Variable 1, "activity": Subjectsí activities.
+
+Variable 1, "activity": Subjects‚Äô activities.
+
        Class: factor.
        Units: none.
+       
        There are 6 kinds of activities:
 -	WALKING
 -	WALKING_UPSTAIRS
@@ -26,14 +31,18 @@ Variable 1, "activity": Subjectsí activities.
 -	SITTING
 -	STANDING
 -	LAYING
-Variable 2, "subject": integers 1, 2, 3Ö 30, representing 30 persons performing activities.
+
+Variable 2, "subject": integers 1, 2, 3‚Ä¶ 30, representing 30 persons performing activities.
        Class: integer.
 	Units: none.
+	
 Variables 3-68, the average variables for each activity and each subject, normalized and bounded within 
 [-1, 1].
        Class: numeric.
        Unites: none.
+       
        They are: 
+       
 "tBodyAcc-mean()-X", "tBodyAcc-mean()-Y", "tBodyAcc-mean()-Z",
 "tBodyAcc-std()-X", "tBodyAcc-std()-Y", "tBodyAcc-std()-Z",
 "tGravityAcc-mean()-X", "tGravityAcc-mean()-Y", "tGravityAcc-mean()-Z",
@@ -78,7 +87,7 @@ Groups: activity [?]
 
 ### Study design
 
-ìrun_analysis.Rî carries out the following work. The commands in  every steps are included.
+‚Äúrun_analysis.R‚Äù carries out the following work. The commands in  every steps are included.
 
 Step 1: Download the dataset. Unzip it to the current working directory. 
 
@@ -86,53 +95,53 @@ Step 1: Download the dataset. Unzip it to the current working directory.
     	download.file(url, "projectData.zip", mode = "wb")
 	dataFilePath <- unzip("projectData.zip")
 
-Step 2: Read ìX-train.txtî and ìX-test.txtî. Merge them to become a new data ìmergeTrainTestî.
+Step 2: Read ‚ÄúX-train.txt‚Äù and ‚ÄúX-test.txt‚Äù. Merge them to become a new data ‚ÄúmergeTrainTest‚Äù.
 
 	x_train <- read.table(dataFilePath[27])
 	x_test <- read.table(dataFilePath[15])
 	mergeTrainTest <- rbind(x_train, x_test)
 
-Step 3: Read ìfeature.txtî. Use it to name the 561 variables in ìmergeTrainTestî.
+Step 3: Read ‚Äúfeature.txt‚Äù. Use it to name the 561 variables in ‚ÄúmergeTrainTest‚Äù.
 
 	feature <- read.table(dataFilePath[2])
 	names(mergeTrainTest) <- feature$V2
 
-Step 4: Extract the variables in ìmergeTrainTestî with names containing either ìmean()î or ìstd()î, 
-meaning mean or standard deviation. Store the 66 variables in a new data ìmeanAndStdî.
+Step 4: Extract the variables in ‚ÄúmergeTrainTest‚Äù with names containing either ‚Äúmean()‚Äù or ‚Äústd()‚Äù, 
+meaning mean or standard deviation. Store the 66 variables in a new data ‚ÄúmeanAndStd‚Äù.
 
 	meanAndStd_index <- grep("mean\\(\\)|std\\(\\)", names(mergeTrainTest))
 	meanAndStd <- mergeTrainTest[, meanAndStd_index]
 
-Step 5: Read ìy_train.txtî and ìy_test.txtî. Merge them to ìactivityî, a vector containing integers 1-6.
+Step 5: Read ‚Äúy_train.txt‚Äù and ‚Äúy_test.txt‚Äù. Merge them to ‚Äúactivity‚Äù, a vector containing integers 1-6.
 
 	y_train <- read.table(dataFilePath[28])
     	y_test <- read.table(dataFilePath[16])
 	activity <- append(y_train$V1, y_test$V1)
 
-Step 6: Read ìactivity_labels.txtî. Replacing the numbers in ìactivityî with their corresponding labels
+Step 6: Read ‚Äúactivity_labels.txt‚Äù. Replacing the numbers in ‚Äúactivity‚Äù with their corresponding labels
 such as WALKING, SITTING, etc.
 
 	activity_labels <- read.table(dataFilePath[1])
  	activity <- as.character(activity_labels$V2[match(activity, activity_labels$V1)]
 
-Step 7: Read ìsubject_train.txtî and ìsubject_test.txtî. Merge them to ìsubjectî.
+Step 7: Read ‚Äúsubject_train.txt‚Äù and ‚Äúsubject_test.txt‚Äù. Merge them to ‚Äúsubject‚Äù.
 
 	subject_train <- read.table(dataFilePath[26])
     	subject_test <- read.table(dataFilePath[14])
     	subject <- append(subject_train$V1, subject_test$V1)
 
-Step 8: Add variables ìactivityî and ìsubjectî into ìmeanAndStdî.
+Step 8: Add variables ‚Äúactivity‚Äù and ‚Äúsubject‚Äù into ‚ÄúmeanAndStd‚Äù.
 
 	meanAndStd <- cbind(activity=activity, subject=subject, meanAndStd)
 
-Step 9: Create a new data ìaverageî, the average of the variables in ìmeanAndStdî grouped by each 
+Step 9: Create a new data ‚Äúaverage‚Äù, the average of the variables in ‚ÄúmeanAndStd‚Äù grouped by each 
 activity and each subject.
 
 	library(dplyr)
     	meanAndStd <- as.tbl(meanAndStd)
 	average <- summarize_each(group_by(meanAndStd, activity, subject), funs(mean))
 
-Final step 10: Write ìaverageî into a ìResult.txtî.
+Final step 10: Write ‚Äúaverage‚Äù into a ‚ÄúResult.txt‚Äù.
 	
 	write.table(average, file = "Result.txt")
 
