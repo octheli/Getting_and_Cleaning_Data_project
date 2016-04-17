@@ -33,16 +33,17 @@ Variable 1, "activity": Subjects’ activities.
 -	LAYING
 
 Variable 2, "subject": integers 1, 2, 3… 30, representing 30 persons performing activities.
+
        Class: integer.
-	Units: none.
+       Units: none.
 	
 Variables 3-68, the average variables for each activity and each subject, normalized and bounded within 
 [-1, 1].
+
        Class: numeric.
        Unites: none.
        
        They are: 
-       
 "tBodyAcc-mean()-X", "tBodyAcc-mean()-Y", "tBodyAcc-mean()-Z",
 "tBodyAcc-std()-X", "tBodyAcc-std()-Y", "tBodyAcc-std()-Z",
 "tGravityAcc-mean()-X", "tGravityAcc-mean()-Y", "tGravityAcc-mean()-Z",
@@ -68,14 +69,18 @@ Variables 3-68, the average variables for each activity and each subject, normal
 "fBodyBodyAccJerkMag-mean()", "fBodyBodyAccJerkMag-std()"
 "fBodyBodyGyroMag-mean()", "fBodyBodyGyroMag-std()"
 "fBodyBodyGyroJerkMag-mean()", "fBodyBodyGyroJerkMag-std()"
+
 Details about the original variables are available at this site:
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
 ### Partial printout of the result data
 
 average
+
 Source: local data frame [180 x 68]
+
 Groups: activity [?]
+
       activity        subject tBodyAcc-mean()-X tBodyAcc-mean()-Y tBodyAcc-mean()-Z
       (fctr)          (int)             (dbl)             (dbl)             (dbl)           
  1    LAYING            1         0.2215982       -0.04051395        -0.1132036      
@@ -83,6 +88,7 @@ Groups: activity [?]
  3    LAYING            3         0.2755169       -0.01895568        -0.1013005      
   ..      ...     ...               ...               ...               ...              
  180  WALKING_UPSTAIRS  30        0.2714156       -0.02533117        -0.1246975
+ 
  Variables not shown: tBodyAcc-std()-X, tBodyAcc-std()-Y (dbl), tBodyAcc-std()-Z (dbl), ..., fBodyBodyGyroJerkMag-std() (dbl)
 
 ### Study design
