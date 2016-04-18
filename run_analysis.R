@@ -146,5 +146,5 @@ run_analysis <- function(){
 
 ## "average" is the result. Write it into a file.
     
-    write.table(average, file = "Result.txt")
+    write.table(average, file = "Result.txt", row.names = FALSE)
 }
