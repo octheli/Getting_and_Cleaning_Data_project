@@ -81,13 +81,13 @@ Source: local data frame [180 x 68]
 
 Groups: activity [?]
 
-      activity        subject tBodyAcc-mean()-X tBodyAcc-mean()-Y tBodyAcc-mean()-Z
-      (fctr)          (int)             (dbl)             (dbl)             (dbl)           
- 1    LAYING            1         0.2215982       -0.04051395        -0.1132036      
- 2    LAYING            2         0.2813734       -0.01815874        -0.1072456      
- 3    LAYING            3         0.2755169       -0.01895568        -0.1013005      
-  ..      ...     ...               ...               ...               ...              
- 180  WALKING_UPSTAIRS  30        0.2714156       -0.02533117        -0.1246975
+     activity        subject tBodyAcc-mean()-X tBodyAcc-mean()-Y tBodyAcc-mean()-Z
+     (fctr)          (int)             (dbl)             (dbl)             (dbl)           
+     LAYING            1         0.2215982       -0.04051395        -0.1132036      
+     LAYING            2         0.2813734       -0.01815874        -0.1072456      
+     LAYING            3         0.2755169       -0.01895568        -0.1013005      
+     ..      ...     ...               ...               ...               ...              
+     WALKING_UPSTAIRS  30        0.2714156       -0.02533117        -0.1246975
  
  Variables not shown: tBodyAcc-std()-X, tBodyAcc-std()-Y (dbl), tBodyAcc-std()-Z (dbl), ..., fBodyBodyGyroJerkMag-std() (dbl)
 
