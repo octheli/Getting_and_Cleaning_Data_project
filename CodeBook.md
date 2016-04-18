@@ -149,6 +149,6 @@ activity and each subject.
 
 Final step 10: Write “average” into a “Result.txt”.
 	
-	write.table(average, file = "Result.txt")
+	write.table(average, file = "Result.txt", row.names = FALSE)
 
 
